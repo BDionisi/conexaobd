@@ -1,14 +1,37 @@
-<?php 
-    // Passo 1 - ABRIR CONEXÃO 
-    $servidor   = "INSIRA AQUI O SEU SERVIDOR (EX: LOCALHOST)";
-    $usuario    = "INSIRA AQUI O SEU USUARIO DO SERVIDOR";
-    $senha      = "INSIRA AQUI A SUA SENHA DO SERVIDOR, SE NÃO HOUVER SENHA DEIXE EM BRANCO";
-    $banco      = "INSIRA AQUI O NOME DO BANCO";
-    $conecta    = mysqli_connect($servidor,$usuario,$senha,$banco);
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
 
-    //Passo 2 - TESTAR CONEXAO
-    if(mysqli_connect_errno() ){
-        die("Conexao falhou: " . mysqli_connect_errno()); 
-    }
-    
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT id, firstname, lastname FROM MyGuests";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "id: " . $row["id"]. " - Name: " . $row["usuario"]. " " . $row["senha"]. "<br>";
+  }
+} else {
+  echo "0 results";
+}
+$conn->close();
 ?>
+
+
+</body>
+</html>
+
+
