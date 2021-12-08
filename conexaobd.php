@@ -5,7 +5,7 @@
     </head>
     <body>
       <?php
-        $servername = "localhost";
+        $servername = "conexaobd";
         $username = "root";
         $password = "";
 
